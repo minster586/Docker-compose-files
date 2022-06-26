@@ -1,0 +1,38 @@
+version: '3.3'
+services:
+    timemachine:
+        restart: always
+        container_name: timemachine
+        ports:
+            - '137:137/udp'
+            - '138:138/udp'
+            - '139:139'
+            - '445:445'
+        environment:
+            - ADVERTISED_HOSTNAME=
+            - CUSTOM_SMB_CONF=false
+            - CUSTOM_USER=false
+            - DEBUG_LEVEL=1
+            - HIDE_SHARES=no
+            - EXTERNAL_CONF=
+            - 'MIMIC_MODEL=TimeCapsule8,119'
+            - TM_USERNAME=timemachine
+            - TM_GROUPNAME=timemachine
+            - TM_UID=1000
+            - TM_GID=1000
+            - PASSWORD=timemachine
+            - SET_PERMISSIONS=false
+            - SHARE_NAME=TimeMachine
+            - SMB_INHERIT_PERMISSIONS=no
+            - SMB_NFS_ACES=yes
+            - SMB_METADATA=stream
+            - SMB_PORT=445
+            - 'SMB_VFS_OBJECTS=acl_xattr fruit streams_xattr'
+            - VOLUME_SIZE_LIMIT=0
+            - WORKGROUP=WORKGROUP
+        volumes:
+            - '/path/on/host/to/backup/to/for/timemachine:/opt/timemachine'
+            - 'timemachine-var-lib-samba:/var/lib/samba'
+            - 'timemachine-var-cache-samba:/var/cache/samba'
+            - 'timemachine-run-samba:/run/samba'
+        image: 'mbentley/timemachine:smb'
