@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  Nadeko:
+    image: registry.gitlab.com/kwoth/nadekobot:latest
+    depends_on:
+      - Redis
+    environment:
+      TZ: America/Detroit
+    volumes:
+      - ./Nadekobot/creds.yml:/app/creds.yml
+      - ./Nadekobot/data:/app/data
+    networks:
+      - nadeko-network
+
+  Redis:
+    image: redis:4-alpine
+    sysctls:
+      - net.core.somaxconn=511
+    command: redis-server --maxmemory 32M --maxmemory-policy volatile-lru
+    volumes:
+      - ./Nadekobot/redis-data:/data
+    networks:
+      - nadeko-network
+networks:
+  nadeko-network:
+    driver: bridge
