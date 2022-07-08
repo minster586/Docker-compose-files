@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+    godaddy-ddns:
+        container_name: ddns
+        restart: always
+        environment:
+            - GODADDY_KEY=<YOUR_KEY>
+            - GODADDY_SECRET=<YOUR_SECRET>
+            - GODADDY_DOMAIN=mydomain.com
+            - GODADDY_TYPE=A
+            - GODADDY_NAME=mysubdomain
+        image: peteward44/godaddy-ddns
