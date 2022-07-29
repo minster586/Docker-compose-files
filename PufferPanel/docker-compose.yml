@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+    pufferpanel:
+        ports:
+            - '8080:8080' #Web panel port
+            - '5657:5657' #SFTP port
+            - '25565:25565' #Mc Server ports can be more 
+        volumes:
+            - '/home/{username}/docker/pufferd/config:/etc/pufferpanel'
+            - '/home/{username}/docker/pufferd/panel:/var/lib/pufferpanel'
+        restart: always
+        image: 'pufferpanel/pufferpanel:latest'
