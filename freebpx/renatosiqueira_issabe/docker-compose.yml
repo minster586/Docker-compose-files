@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+    issabel:
+        container_name: issabel
+        devices:
+            - '/dev/ttyUSB*'
+        privileged: false
+        network_mode: host
+        restart: always
+        image: renatosiqueira/issabel
