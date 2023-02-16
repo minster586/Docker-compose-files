@@ -1,0 +1,6 @@
+version: '3.3'
+services:
+    dashboard:
+        ports:
+            - '8080:80'
+        image: sogebot/dashboard
