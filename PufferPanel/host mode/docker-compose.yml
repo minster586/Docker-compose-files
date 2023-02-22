@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+    pufferpanel:
+        network_mode: host 
+        volumes:
+            - '/home/{username}/docker/pufferd/config:/etc/pufferpanel'
+            - '/home/{username}/docker/pufferd/panel:/var/lib/pufferpanel'
+        restart: always
+        image: 'pufferpanel/pufferpanel:latest'
